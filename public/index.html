@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cheapest Farming Upgrade</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="src/dataManager.js"></script>
+  <script src="src/farmingFortune.js"></script>
+</head>
+<body>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Cheapest Farming Fortune Upgrades</h1>
+        <p>Enter your Minecraft username to see the most cost-effective upgrades for farming fortune.</p>
+      </header>
+  
+      <div class="user-section">
+        <!-- Username Input and Fetch Button -->
+        <div class="input-group">
+          <input type="text" id="username" placeholder="Enter Minecraft Username">
+          <button id="fetchDataButton">Find Upgrades</button>
+        </div>
+      
+        <!-- Profile Information Display -->
+        <div class="profile-display">
+          <span id="usernameDisplay">Username: Player123</span> |
+          <span id="profileName">Profile: -</span> |
+          <span id="farmingLevel">Farming Level: -</span>
+          <button class="refresh-btn">Refresh</button>
+          <span class="last-updated">Last updated: Just now</span>
+        </div>
+      
+        <!-- Profile Dropdown Menu -->
+        <div class="dropdown-group">
+          <label for="profileDropdown">Select Profile:</label>
+          <select id="profileDropdown"></select>
+        </div>
+        <h2 id="totalFarmingFortune">A</h2>
+      </div>
+      
+  
+      <!-- Rest of your HTML... -->
+    </div>
+  </body>
+  
+</body>
+</html>

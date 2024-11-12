@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "hypixel-api-reborn": "^11.3.7"
+  }
+}

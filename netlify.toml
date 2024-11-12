@@ -1,0 +1,3 @@
+[build]
+  functions = "netlify/functions"   # Points to the functions directory
+  publish = "public"                # Points to the directory with your index.html and other assets

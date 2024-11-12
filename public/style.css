@@ -1,0 +1,107 @@
+/* styles.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #161620;
+  color: #ffffff;
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  width: 90%;
+  max-width: 600px;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 1.8em;
+  margin-bottom: 10px;
+}
+
+header p {
+  color: #ffffffe6;
+  margin-bottom: 20px;
+}
+
+#fetchDataButton {
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #ffdd00, #ffcc00); /* Yellow gradient */
+  border: none;
+  border-radius: 5px;
+  color: #161620;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#fetchDataButton:hover {
+  background: linear-gradient(
+    135deg,
+    #ffe066,
+    #ffdd00
+  ); /* Lighter yellow on hover */
+}
+
+.refresh-btn {
+  padding: 8px 15px;
+  background: linear-gradient(135deg, #efa811, #ffcc00);
+  border: none;
+  border-radius: 5px;
+  color: #161620;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.refresh-btn:hover {
+  background: linear-gradient(135deg, #efa811, #ffcc00);
+}
+
+footer a {
+  color: #ffffffe6;
+  text-decoration: none;
+  margin: 0 5px;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+.user-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.input-group,
+.profile-display,
+.dropdown-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.input-group {
+  justify-content: center;
+}
+
+.profile-display {
+  flex-wrap: wrap;
+  justify-content: center;
+  text-align: center;
+}
+
+.refresh-btn {
+  margin-left: 0.5rem;
+}
+
+.dropdown-group {
+  justify-content: center;
+}
