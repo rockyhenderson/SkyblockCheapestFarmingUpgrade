@@ -86,11 +86,15 @@ async function fetchData(username) {
       JSON.stringify(data.profiles[0])
     ); // First profile as default
 
-    // Store all pets, active pet, and unlocked plots in local storage
+    // Store all pets, active pet, garden level, and unlocked plots in local storage
     localStorage.setItem("allPets", JSON.stringify(data.profiles[0].pets));
     localStorage.setItem(
       "activePet",
       JSON.stringify(data.profiles[0].activePet)
+    );
+    localStorage.setItem(
+      "gardenLevel",
+      JSON.stringify(data.profiles[0].gardenLevel)
     );
     localStorage.setItem(
       "unlockedPlots",
@@ -102,14 +106,13 @@ async function fetchData(username) {
     populateProfileDropdown(data.profiles);
     displayProfileData(data.profiles[0]); // Display the first profile by default
 
-    // Debug logs for pet and plot data
-    console.log("All Pets:", data.profiles[0].pets);
-    console.log("Active Pet:", data.profiles[0].activePet);
-    console.log("Unlocked Plots:", data.profiles[0].unlockedPlots);
+    // Debug logs for pet, garden, and plot data
   } catch (error) {
     console.error("Error fetching data:", error);
   }
 }
+
+
 
 function displayProfileData(profile) {
   if (!profile) {
@@ -117,12 +120,7 @@ function displayProfileData(profile) {
     return;
   }
 
-  // Display basic profile data
-  console.log("Profile ID:", profile.profileId);
-  console.log("Profile Name:", profile.profileName);
 
-  // Display unlocked plots
-  console.log("Unlocked Plots:", profile.unlockedPlots);
 
   // You can add further DOM manipulation here to display the data on the web page
 }

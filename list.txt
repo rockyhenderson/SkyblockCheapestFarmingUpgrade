@@ -15,7 +15,7 @@ NO - Beistery
 -Refined cacao  Truffle
 -Chocolate Fortune
 -Pets
--Pet Item
+DONE - Pet Item
 -Equipment(rarity, reforge)
 -Armour(ench,reforge,rarity,stones)
 -Tools(Gemsomes, rarity, Enchant, reforge)

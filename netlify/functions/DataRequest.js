@@ -35,6 +35,7 @@ exports.handler = async function (event, context) {
     for (const profile of profiles) {
       let wardrobeItems = null;
       let equippedArmor = null;
+      let gardenLevel = null;
       let unlockedPlots = [];
       let bestiaryData = null;
 
@@ -60,10 +61,14 @@ exports.handler = async function (event, context) {
         );
       }
 
-      // Fetch garden data to get unlocked plots
+      // Fetch garden data to get level and unlocked plots
       try {
         const gardenData = await hypixel.getSkyblockGarden(profile.profileId);
+        gardenLevel = gardenData.level ? gardenData.level.level : null;
         unlockedPlots = gardenData.unlockedPlots || [];
+        console.log(
+          `Garden data fetched for profile ${profile.profileName}, Level: ${gardenLevel}, Unlocked Plots: ${unlockedPlots.length}`
+        );
       } catch (err) {
         console.log(
           `Failed to fetch garden data for profile ${profile.profileName}`
@@ -104,7 +109,7 @@ exports.handler = async function (event, context) {
         }
       });
 
-      // Prepare profile data, including pets, armor, skill, and unlocked plots information
+      // Prepare profile data, including pets, armor, skill, garden level, and unlocked plots information
       profileData.push({
         profileId: profile.profileId,
         profileName: profile.profileName,
@@ -115,6 +120,7 @@ exports.handler = async function (event, context) {
 
         wardrobeItems: wardrobeItems,
         equippedArmor: equippedArmor,
+        gardenLevel: gardenLevel,
         unlockedPlots: unlockedPlots,
         bestiaryData: bestiaryData,
 
@@ -123,7 +129,7 @@ exports.handler = async function (event, context) {
       });
     }
 
-    // Send full player and profile data, including pets, unlocked plots, and bestiary
+    // Send full player and profile data, including pets, garden level, unlocked plots, and bestiary
     return {
       statusCode: 200,
       body: JSON.stringify({
