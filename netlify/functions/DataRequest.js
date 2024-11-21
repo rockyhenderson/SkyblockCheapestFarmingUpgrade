@@ -35,21 +35,52 @@ exports.handler = async function (event, context) {
     for (const profile of profiles) {
       let wardrobeItems = null;
       let equippedArmor = null;
+      let unlockedPlots = [];
+      let bestiaryData = null;
 
       // Fetch the wardrobe data
       try {
         wardrobeItems = await profile.me.getWardrobe();
         console.log(`Wardrobe data fetched for profile ${profile.profileName}`);
       } catch (err) {
-        console.log(`Failed to fetch wardrobe data for profile ${profile.profileName}`);
+        console.log(
+          `Failed to fetch wardrobe data for profile ${profile.profileName}`
+        );
       }
 
       // Fetch the equipped armor data
       try {
         equippedArmor = await profile.me.getArmor();
-        console.log(`Equipped armor data fetched for profile ${profile.profileName}`);
+        console.log(
+          `Equipped armor data fetched for profile ${profile.profileName}`
+        );
       } catch (err) {
-        console.log(`Failed to fetch equipped armor data for profile ${profile.profileName}`);
+        console.log(
+          `Failed to fetch equipped armor data for profile ${profile.profileName}`
+        );
+      }
+
+      // Fetch garden data to get unlocked plots
+      try {
+        const gardenData = await hypixel.getSkyblockGarden(profile.profileId);
+        unlockedPlots = gardenData.unlockedPlots || [];
+      } catch (err) {
+        console.log(
+          `Failed to fetch garden data for profile ${profile.profileName}`
+        );
+      }
+
+      // Fetch bestiary data from SkyblockMember
+      try {
+        bestiaryData = profile.me.bestiary;
+        console.log(
+          `Bestiary data fetched for profile ${profile.profileName}:`,
+          bestiaryData
+        );
+      } catch (err) {
+        console.log(
+          `Failed to fetch bestiary data for profile ${profile.profileName}`
+        );
       }
 
       // Fetch skill levels
@@ -57,7 +88,10 @@ exports.handler = async function (event, context) {
       try {
         farmingSkill = profile.me.skills.farming;
       } catch (err) {
-        console.log("Skill API may be disabled for profile", profile.profileName);
+        console.log(
+          "Skill API may be disabled for profile",
+          profile.profileName
+        );
       }
 
       // Fetch all pets and identify the active pet
@@ -70,7 +104,7 @@ exports.handler = async function (event, context) {
         }
       });
 
-      // Prepare profile data, including pets, armor, and skill information
+      // Prepare profile data, including pets, armor, skill, and unlocked plots information
       profileData.push({
         profileId: profile.profileId,
         profileName: profile.profileName,
@@ -81,13 +115,15 @@ exports.handler = async function (event, context) {
 
         wardrobeItems: wardrobeItems,
         equippedArmor: equippedArmor,
-        
+        unlockedPlots: unlockedPlots,
+        bestiaryData: bestiaryData,
+
         pets: pets, // All pets
         activePet: activePet, // Currently active pet, if any
       });
     }
 
-    // Send full player and profile data, including pets
+    // Send full player and profile data, including pets, unlocked plots, and bestiary
     return {
       statusCode: 200,
       body: JSON.stringify({
